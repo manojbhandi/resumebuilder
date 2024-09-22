@@ -1,7 +1,7 @@
 {
   "name": "resumebuilder",
   "version": "0.1.0",
-  "homepage": "https://manojbhandi.github.io/resumebuilder",
+  "homepage_": "https://manojbhandi.github.io/resumebuilder",
   "private": true,
   "dependencies": {
     "@fontsource/poppins": "^5.1.0",
