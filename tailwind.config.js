@@ -11,6 +11,7 @@ module.exports = {
         textSecondary: "#404653",
         mutedRed: "#EB5757",
         textHeading: "#000112",
+        whiteSmoke:'#F9F9F9',
       },
       boxShadow: {
         "custom-1": "0px 0px 1px 0px #21252914",

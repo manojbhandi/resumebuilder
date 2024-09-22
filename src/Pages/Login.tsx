@@ -1,58 +1,105 @@
-import React, { useState } from "react"
-import HeroImage from "../Assets/Images/HeroImage.png"
-import eyeIcon from "../Assets/Icons/Eye.png"
-const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const togglePasswordVisibility = () => {
-        setShowPassword(prevState => !prevState);
-    };
-    return (
-        <div className="flex flex-row h-screen">
-            <div className="flex-1 hidden lg:block">
-                <img
-                    src={HeroImage}
-                    alt="hero"
-                    className="w-full h-full object-cover"
-                />
-            </div>
-            <div className="flex-1 justify-center px-32 pt-20">
-                <div className="flex justify-center flex-col gap-4">
-                    <div className="flex justify-between ">
-                        <span className="font-semibold text-base text-textHeading">Register</span>
-                        <span className="font-semibold text-base text-textHeading">Login</span>
-                    </div>
-                    <div className="flex">
-                        <hr className="h-[6px] bg-[#D9D9D9] w-[50%]" />
-                        <hr className="h-[6px] bg-mutedRed w-[50%]" />
-                    </div>
-                    <div className="flex flex-col relative gap-2 mt-8">
-                        <span className=" text-[#3B3B3B] font-normal text-base ">Email address</span>
-                        <input
-                            className="border-[1.4px] border-slate-100 rounded-[8px] p-3 shadow-custom-2"
-                            placeholder="Johndoe@gmail.com"
-                        />
-                        <span className=" text-[#3B3B3B] font-normal text-base ">Password</span>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            className="border-[1.4px] border-slate-100 rounded-[8px] p-3 pl-5 pr-12 shadow-custom-2 items-center flex justify-center"
-                            placeholder="*********"
-                        />
-                        <button
-                            type="button"
-                            onClick={togglePasswordVisibility}
-                            className="absolute top-[8.5rem] right-0 flex items-center pr-3"
-                        >
-                            {showPassword ? <img src={eyeIcon} alt="showpassword" className="w-5 h-5 text-slate-500" /> : <img src={eyeIcon} alt="showpassword" className="w-5 h-5 text-slate-500" />}
-                        </button>
-                        <span className=" font-normal text-base text-[#0073E6] ms-auto">Forgot Password</span>
-                    </div>
-                    <button className="bg-mutedRed px-4 py-2 text-white rounded-[8px] mt-8">
-                        Log In
-                    </button>
-                </div>
-            </div>
-        </div>
-    )
+import React, { useState } from "react";
+import HeroImage from "../Assets/Images/HeroImage.png";
+import eyeIcon from "../Assets/Icons/Eye.png";
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
-}
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate()
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
+  const handleLogin = async (e:any) => {
+    e.preventDefault(); 
+    
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to login, please check your credentials");
+      }
+
+      const data = await response.json();
+      toast.success(`Welcome Back! ${data?.user}`, {
+        position: 'top-right'
+      });
+      navigate('/')
+      console.log("Login successful", data);
+    } catch (error:any) {
+      setError(error.message);
+    }
+  };
+
+  return (
+    <div className="flex flex-row h-screen">
+      <div className="flex-1 hidden lg:block">
+        <img
+          src={HeroImage}
+          alt="hero"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="flex-1 justify-center px-32 pt-20">
+        <form onSubmit={handleLogin} className="flex justify-center flex-col gap-4">
+          <div className="flex justify-between ">
+            <span className="font-semibold text-base text-textHeading">Register</span>
+            <span className="font-semibold text-base text-textHeading">Login</span>
+          </div>
+          <div className="flex">
+            <hr className="h-[6px] bg-[#D9D9D9] w-[50%]" />
+            <hr className="h-[6px] bg-mutedRed w-[50%]" />
+          </div>
+          <div className="flex flex-col relative gap-2 mt-8">
+            <span className="text-[#3B3B3B] font-normal text-base">Email address</span>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="border-[1.4px] border-slate-100 rounded-[8px] p-3 shadow-custom-2"
+              placeholder="Johndoe@gmail.com"
+              required
+            />
+            <span className="text-[#3B3B3B] font-normal text-base">Password</span>
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="border-[1.4px] border-slate-100 rounded-[8px] p-3 pl-5 pr-12 shadow-custom-2"
+              placeholder="*********"
+              required
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-[8.5rem] right-0 flex items-center pr-3"
+            >
+              <img src={eyeIcon} alt="toggle password visibility" className="w-5 h-5 text-slate-500" />
+            </button>
+            <span className="font-normal text-base text-[#0073E6] ms-auto">Forgot Password</span>
+          </div>
+          {error && <div className="text-red-500 mt-2">{error}</div>}
+          <button type="submit" className="bg-mutedRed px-4 py-2 text-white rounded-[8px] mt-8">
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 export default Login;
