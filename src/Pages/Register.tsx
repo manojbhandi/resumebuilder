@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from "react-router-dom";
 import { API_END_POINT, ROUTES } from "../Utils/SiteConfig";
 
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,16 +15,16 @@ const Login = () => {
     setShowPassword(prevState => !prevState);
   };
 
-  const handleLogin = async (e:any) => {
-    e.preventDefault(); 
-    
+  const handleRegistration = async (e: any) => {
+    e.preventDefault();
+
     const loginData = {
       email: email,
       password: password,
     };
 
     try {
-      const response = await fetch(`${API_END_POINT.baseUrl}/${API_END_POINT.login}`, {
+      const response = await fetch(`${API_END_POINT.baseUrl}/${API_END_POINT.regster}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,17 +33,16 @@ const Login = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to login, please check your credentials");
+        throw new Error("Failed to register, something went wrong");
       }
 
       const data = await response.json();
       localStorage.setItem('user', JSON.stringify(data));
-      toast.success(`Welcome Back! ${data?.user}`, {
+      toast.success(`Registration Successful, Please Login!`, {
         position: 'top-right'
       });
-      navigate('/')
-      console.log("Login successful", data);
-    } catch (error:any) {
+      navigate(`${ROUTES.login}`)
+    } catch (error: any) {
       setError(error.message);
     }
   };
@@ -58,14 +57,14 @@ const Login = () => {
         />
       </div>
       <div className="flex-1 justify-center px-32 pt-20">
-        <form onSubmit={handleLogin} className="flex justify-center flex-col gap-4">
+        <form onSubmit={handleRegistration} className="flex justify-center flex-col gap-4">
           <div className="flex justify-between ">
             <span className="font-semibold text-base text-textHeading">Register</span>
             <span className="font-semibold text-base text-textHeading">Login</span>
           </div>
           <div className="flex">
-            <hr className="h-[6px] bg-[#D9D9D9] w-[50%]" />
             <hr className="h-[6px] bg-mutedRed w-[50%]" />
+            <hr className="h-[6px] bg-[#D9D9D9] w-[50%]" />
           </div>
           <div className="flex flex-col relative gap-2 mt-8">
             <span className="text-[#3B3B3B] font-normal text-base">Email address</span>
@@ -92,12 +91,17 @@ const Login = () => {
             >
               <img src={eyeIcon} alt="toggle password visibility" className="w-5 h-5 text-slate-500" />
             </button>
-            <span className="font-normal text-base text-[#0073E6] ms-auto">Forgot Password</span>
-            <Link to={ROUTES.register} className="font-normal text-base text-[#0073E6] ms-auto">Register</Link>
+
+            <span className="ms-auto flex gap-2 mt-3">
+              <p className="font-normal text-base ">Already have an account?</p>
+              <Link to={ROUTES.login} className="font-normal text-base text-[#0073E6] ms-auto">Login</Link>
+            </span>
+
+            {/* <span className="font-normal text-base text-[#0073E6] ms-auto">Forgot Password</span> */}
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}
           <button type="submit" className="bg-mutedRed px-4 py-2 text-white rounded-[8px] mt-8">
-            Log In
+            Register
           </button>
         </form>
       </div>
@@ -105,4 +109,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

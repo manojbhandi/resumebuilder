@@ -41,16 +41,17 @@ interface InputProps {
   placeholder: string,
   onInputChange: any,
   labelClassName?: object,
-  inputClassName?: object
+  inputClassName?: object,
+  length?:number
 }
 function CustomInput(props: InputProps) {
-  const { title, value, onInputChange,placeholder, labelClassName, inputClassName, name } = props;
+  const { title, value, onInputChange,placeholder, labelClassName, inputClassName, name,length } = props;
 
   return (
     <div className=' flex flex-col gap-2'>
       <Label {...labelClassName}>{title}</Label>
       <Input
-
+        maxLength={length}
         {...inputClassName}
         title={title}
         placeholder={placeholder}

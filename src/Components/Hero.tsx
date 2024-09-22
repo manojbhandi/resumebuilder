@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="mt-8">
           <button
             onClick={() => {
-              navigate('/login')
+              navigate('/builder')
             }}
             className="bg-mutedRed text-white rounded-lg px-6 py-2 font-bold text-lg">Create Resume For Free</button>
         </div>

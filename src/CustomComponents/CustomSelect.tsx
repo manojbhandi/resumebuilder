@@ -44,6 +44,7 @@ const Label = styled.p<{ color?: string; fontSize?: string; fontWeight?: string;
 interface SelectProps {
   title: string;
   value: string;
+  name?:string;
   options: { value: string; label: string }[];
   onSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   labelClassName?: object;
@@ -51,19 +52,20 @@ interface SelectProps {
 }
 
 function CustomSelect(props: SelectProps) {
-  const { title, value, options, onSelectChange, labelClassName, selectClassName } = props;
+  const { title, value, options, onSelectChange, labelClassName, selectClassName,name } = props;
 
   return (
     <div className='flex flex-col gap-2'>
       <Label {...labelClassName}>{title}</Label>
       <Select
         {...selectClassName}
-        name={title}
+        name={name}
+        title={title}
         id={title}
         value={value}
         onChange={onSelectChange}
       >
-        <option value="" disabled selected hidden>
+        <option value="" disabled hidden>
           Select
         </option>
         {options.map((option, index) => (

@@ -17,7 +17,9 @@ interface PersonalInfoProps {
 
 const validationSchema = Yup.object({
     fullName: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email format').required('Email is required'),
+    email: Yup.string()
+            .max(30, "Should be Less Than 30 characters")
+            .email('Invalid email format').required('Email is required'),
     profession: Yup.string().required('Profession is required'),
     address: Yup.string().required('Address is required'),
     city: Yup.string().required('City is required'),
@@ -44,7 +46,10 @@ function PersonalInfo(props: PersonalInfoProps) {
                                 title="Full Name"
                                 placeholder="John Doe"
                                 value={values.fullName}
-                                onInputChange={handleChange}
+                                onInputChange={(e: any) => {
+                                    handleChange(e);
+                                    updateFormData({ fullName: e.target.value });
+                                }}
                                 name="fullName"
                             />
                             <ErrorMessage name="fullName" component="div" className="text-red-500 text-sm" />
@@ -52,7 +57,11 @@ function PersonalInfo(props: PersonalInfoProps) {
                                 title="Email Address"
                                 placeholder="johndoe@gmail.com"
                                 value={values.email}
-                                onInputChange={handleChange}
+                                length={23}
+                                onInputChange={(e: any) => {
+                                    handleChange(e);
+                                    updateFormData({ email: e.target.value });
+                                }}
                                 name="email"
                             />
                             <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
@@ -60,7 +69,10 @@ function PersonalInfo(props: PersonalInfoProps) {
                                 title="Profession"
                                 placeholder="Software Engineer"
                                 value={values.profession}
-                                onInputChange={handleChange}
+                                onInputChange={(e: any) => {
+                                    handleChange(e);
+                                    updateFormData({ profession: e.target.value });
+                                }}
                                 name="profession"
                             />
                             <ErrorMessage name="profession" component="div" className="text-red-500 text-sm" />
@@ -68,7 +80,10 @@ function PersonalInfo(props: PersonalInfoProps) {
                                 title="Address"
                                 placeholder="NG 1113 Oreville"
                                 value={values.address}
-                                onInputChange={handleChange}
+                                onInputChange={(e: any) => {
+                                    handleChange(e);
+                                    updateFormData({ address: e.target.value });
+                                }}
                                 name="address"
                             />
                             <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
@@ -79,7 +94,10 @@ function PersonalInfo(props: PersonalInfoProps) {
                                         title="City"
                                         placeholder="Orlean"
                                         value={values.city}
-                                        onInputChange={handleChange}
+                                        onInputChange={(e: any) => {
+                                            handleChange(e);
+                                            updateFormData({ city: e.target.value });
+                                        }}
                                         inputClassName={inputClassName}
                                         name="city"
 
@@ -91,7 +109,10 @@ function PersonalInfo(props: PersonalInfoProps) {
                                         title="State"
                                         placeholder="New Jersey"
                                         value={values.state}
-                                        onInputChange={handleChange}
+                                        onInputChange={(e: any) => {
+                                            handleChange(e);
+                                            updateFormData({ state: e.target.value });
+                                        }}
                                         inputClassName={inputClassName}
                                         name="state"
                                     />

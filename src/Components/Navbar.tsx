@@ -11,7 +11,12 @@ const Navbar = () => {
   };
   return (
     <div className="flex flex-row  flex-wrap items-center p-10 justify-between  w-full bg-white border-b-[1.4px] border-slate-100">
-      <div>
+      <div
+          role='button'
+        onClick={() => {
+          navigate('/')
+        }}
+      >
         <CVBuilderLogo />
       </div>
       <div className="flex gap-10 font-medium text-xl flex-wrap">
@@ -30,8 +35,8 @@ const Navbar = () => {
       </div>
       <div>
         <button
-          onClick={()=>{
-            navigate('/login')
+          onClick={() => {
+            navigate('/builder')
           }}
           className="px-4 py-2 bg-mutedRed text-white rounded-lg font-semibold text-lg hidden lg:block">
           Get Statred

@@ -67,7 +67,7 @@ function Sideabar(props: SidebarProps) {
 
 
   return (
-    <aside className='bg-white h-screen w-[19rem] border-r-[1.4px] border-slate-100'>
+    <aside className='bg-white min-w-[19rem] border-r-[1.4px] border-slate-100'>
       <div>
 
         <img src={hamBurgerMenu} className='ml-auto my-2 p-3 cursor-pointer' alt="menu" />

@@ -45,7 +45,10 @@ function Experience(props: ExperienceProps) {
               title="Company"
               placeholder="Google"
               value={values.company}
-              onInputChange={handleChange}
+              onInputChange={(e:any)=>{
+                handleChange(e);
+                updateFormData({ company: e.target.value });
+              }}
               name="company"
             />
             <ErrorMessage name="company" component="div" className="text-red-500 text-sm" />
@@ -54,7 +57,10 @@ function Experience(props: ExperienceProps) {
               title="Employer"
               placeholder="Employer's Address"
               value={values.employer}
-              onInputChange={handleChange}
+              onInputChange={(e:any)=>{
+                handleChange(e);
+                updateFormData({ employer: e.target.value });
+              }}
               name="employer"
             />
             <ErrorMessage name="employer" component="div" className="text-red-500 text-sm" />
@@ -63,7 +69,10 @@ function Experience(props: ExperienceProps) {
               title="Role"
               placeholder="Software Engineer"
               value={values.role}
-              onInputChange={handleChange}
+              onInputChange={(e:any)=>{
+                handleChange(e);
+                updateFormData({ role: e.target.value });
+              }}
               name="role"
             />
             <ErrorMessage name="role" component="div" className="text-red-500 text-sm" />
@@ -72,7 +81,10 @@ function Experience(props: ExperienceProps) {
               title="Location"
               placeholder="London"
               value={values.location}
-              onInputChange={handleChange}
+              onInputChange={(e:any)=>{
+                handleChange(e);
+                updateFormData({ location: e.target.value });
+              }}
               name="location"
             />
             <ErrorMessage name="location" component="div" className="text-red-500 text-sm" />
@@ -83,7 +95,10 @@ function Experience(props: ExperienceProps) {
                   title="Start Date"
                   placeholder="MM/YY"
                   value={values.start}
-                  onInputChange={handleChange}
+                  onInputChange={(e:any)=>{
+                    handleChange(e);
+                    updateFormData({ start: e.target.value });
+                  }}
                   inputClassName={inputClassName}
                   name="start"
                 />
@@ -96,7 +111,10 @@ function Experience(props: ExperienceProps) {
                     title="Finish Date"
                     placeholder="MM/YY"
                     value={values.finish}
-                    onInputChange={handleChange}
+                    onInputChange={(e:any)=>{
+                      handleChange(e);
+                      updateFormData({ finish: e.target.value });
+                    }}
                     inputClassName={inputClassName}
                     name="finish"
                   />
@@ -113,6 +131,7 @@ function Experience(props: ExperienceProps) {
                   checked={values.currentlyWorking}
                   onChange={(e) => {
                     setFieldValue('currentlyWorking', e.target.checked)
+                    updateFormData({ finish: e.target.value });
                     setTouched({ currentlyWorking: true });
                   }}
                   className='w-6 h-6 bg-white border border-[#E4E7EB] checked:bg-[#278917]'
