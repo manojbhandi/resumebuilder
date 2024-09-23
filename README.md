@@ -18,18 +18,19 @@ This project is a comprehensive and beautifully designed Resume Builder Applicat
 📝 Resume Builder Component: The core feature of the project, where users can input their details and build a resume.
 
 5 Sidebar Menu Items: Each form in the sidebar focuses on specific sections of the resume (e.g., personal details, experience, education).
-Formik & Yup Validation: Every form is equipped with Formik and Yup for easy validation and error handling.
-Dynamic Template Display: User-entered data is beautifully displayed on a live resume template for instant feedback.
+
+**Formik & Yup Validation:** Every form is equipped with Formik and Yup for easy validation and error handling.
+**Dynamic Template Display:** User-entered data is beautifully displayed on a live resume template for instant feedback.
 ***
-⚙️ Backend:
+**⚙️ Backend:**
 Node.js and MongoDB backend, deployed on Render.
 Includes login and register APIs to manage user authentication and session handling.
 Data is securely stored and managed with MongoDB for fast and scalable storage solutions.
 ***
-🎨 Styling:
+**🎨 Styling:**
 Built with Tailwind CSS, providing a modern and clean design system.
 
 ***
-🛠️ Development Practices:
+**🛠️ Development Practices:**
 TypeScript is used throughout the codebase, improving code quality, scalability, and maintainability.
 With a sleek design, robust backend, and smooth user experience, this Resume Builder UI project is a full-stack solution ready for production. 🚀
