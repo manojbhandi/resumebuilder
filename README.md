@@ -20,6 +20,8 @@ This project is a comprehensive and beautifully designed Resume Builder Applicat
 5 Sidebar Menu Items: Each form in the sidebar focuses on specific sections of the resume (e.g., personal details, experience, education).
 
 **Formik & Yup Validation:** Every form is equipped with Formik and Yup for easy validation and error handling.
+
+
 **Dynamic Template Display:** User-entered data is beautifully displayed on a live resume template for instant feedback.
 ***
 **⚙️ Backend:**
