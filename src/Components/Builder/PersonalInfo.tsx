@@ -52,7 +52,8 @@ function PersonalInfo(props: PersonalInfoProps) {
                                 }}
                                 name="fullName"
                             />
-                            <ErrorMessage name="fullName" component="div" className="text-red-500 text-sm" />
+                           
+                            <ErrorMessage name="fullName" component="div" className="text-pink-400 text-sm"  />
                             <CustomInput
                                 title="Email Address"
                                 placeholder="johndoe@gmail.com"

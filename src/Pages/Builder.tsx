@@ -81,6 +81,7 @@ function Builder(props: any) {
 
         <div className='pb-5 bg-whiteSmoke'>
             <Header />
+
             <div className='flex '>
                 <Sideabar
                     activeComponent={activeComponent}
