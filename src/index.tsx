@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Analytics from '../GoogleAnalytics/analytics';
+// import Analytics from '../GoogleAnalytics/analytics';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <ToastContainer />
     <head>
-      <Analytics />
+      {/* <Analytics /> */}
     </head>
     <App />
 
